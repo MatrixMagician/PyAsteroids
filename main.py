@@ -22,6 +22,10 @@ def main():
                 return
         # Fill the screen with black
         screen.fill("black")
+
+        # Update the player (handle input and rotation)
+        player.update(dt)
+
         # Draw the player
         player.draw(screen)
         # Refresh the screen
