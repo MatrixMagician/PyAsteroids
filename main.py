@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     print("Starting Asteroids!")
@@ -18,11 +20,21 @@ def main():
     # Create sprite groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    # Set up Asteroid containers
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+    # Set up AsteroidField containers (only updatable, not drawable)
+    AsteroidField.containers = (updatable,)
 
     # Create player instance after filling the screen but before flipping the display
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     updatable.add(player)
     drawable.add(player)
+
+    # Create AsteroidField instance
+    asteroid_field = AsteroidField()
 
     # Basic game loop
     while True:
