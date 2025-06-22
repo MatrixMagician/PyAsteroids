@@ -41,7 +41,7 @@ def main():
     # Create AsteroidField instance
     asteroid_field = AsteroidField()
 
-    # Basic game loop
+    # THE game loop
     while True:
         # Handle events
         for event in pygame.event.get():
@@ -62,6 +62,13 @@ def main():
             if player.collides_with(asteroid):
                 print("Game over!")
                 sys.exit()
+
+        # Check for collisions between bullets and asteroids
+        for asteroid in asteroids:
+            for bullet in shots:
+                if bullet.collides_with(asteroid):
+                    bullet.kill()
+                    asteroid.kill()
 
         # Refresh the screen
         pygame.display.flip()
